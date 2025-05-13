@@ -1,0 +1,12 @@
+@import 'assets/styles/Consolas.css';
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Consolas', sans-serif;
+    height: 100vh;
+    width: 100%;
+}
