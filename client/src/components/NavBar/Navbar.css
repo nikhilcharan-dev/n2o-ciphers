@@ -20,7 +20,6 @@
     height: 70px;
     width: 70px;
     margin: 10px;
-    background-image : url("/Logo.jpg");
     background-size: cover;
     background-position: center;
     cursor: pointer;

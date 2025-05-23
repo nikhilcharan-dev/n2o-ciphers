@@ -21,7 +21,7 @@ export default function Navbar() {
       <section>
           <nav className="navbar" >
               <div className="navbar-brand">
-                  <div className="logo"/>
+                  <img src="/images/Logo.jpg" className="logo" alt="logo"/>
                   <div className="title">
                       N2O Ciphers Bounty Nation
                   </div>
