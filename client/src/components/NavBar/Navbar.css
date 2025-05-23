@@ -1,0 +1,75 @@
+.navbar{
+    min-height : 50%;
+    width: 100%;
+    background-color: rgb(13,12,77);
+    display : flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-brand{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2%;
+}
+
+.logo {
+    height: 70px;
+    width: 70px;
+    margin: 10px;
+    background-image : url("/Logo.jpg");
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+}
+
+.title{
+    color : white;
+    font-weight : bold;
+    font-size: 20px;
+}
+
+.navSections{
+    display: flex;
+    min-width: 50%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
+}
+
+.navSection{
+    padding: 10px 15px;
+    height : 20px;
+    color : white ;
+    border-radius : 5px;
+    border : 2px solid black;
+}
+
+nav li {
+    display: inline;
+    text-decoration: none;
+    list-style: none;
+    font-size: 16px;
+}
+
+nav li:hover {
+    cursor: pointer;
+}
+
+#active {
+    background-color: white;
+    color: rgb(13,12,77);
+}
+
+.nav-burger-icon {
+    height: 50px;
+    width: 50px;
+    background-size: contain;
+}
+.nav-burger-icon:hover {
+    cursor: pointer;
+}

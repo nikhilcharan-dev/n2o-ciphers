@@ -1,11 +1,13 @@
-
 import './HomePage.css';
-import Navbar from './Navbar';
+import Navbar from '../../components/NavBar/Navbar.jsx';
+import MainBanner from '../../assets/images/main-banner.png';
+
+
 const HomePage = () => {
     return (
-        <div>
-            <Navbar/>
-        </div>
+        <section>
+            <img src={MainBanner} alt="MainBanner" />
+        </section>
     )
 }
 
