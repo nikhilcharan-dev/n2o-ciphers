@@ -1,6 +1,76 @@
-section > img {
+.homepage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: auto;
+    width: 100vw;
+
+    gap: 3rem;
+}
+
+.homepage:focus {
+    outline: none;
+}
+
+.main-banner {
     width: 90%;
     height: auto;
     display: block;
     margin: auto;
+
+    user-select: none;
+}
+
+.programs {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+
+.programs h3 {
+    font-size: 1.5rem;
+}
+
+.divider {
+    width: 2px;
+    background-color: #ffffff;
+    height: auto;
+    border-radius: 5px;
+}
+
+.carousel {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.carousel-track {
+    display: flex;
+    animation: scroll 25s linear infinite;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.carousel-img {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+    flex-shrink: 0;
+    opacity: 0.8;
+}
+
+.carousel-img:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(3%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
 }
