@@ -1,11 +1,10 @@
-// imports
 
 import './HomePage.css';
-
+import Navbar from './Navbar';
 const HomePage = () => {
     return (
-        <div >
-            THIS IS HOME PAGE
+        <div>
+            <Navbar/>
         </div>
     )
 }
