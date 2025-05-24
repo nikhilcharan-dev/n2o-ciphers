@@ -1,5 +1,4 @@
 import './HomePage.css';
-import Navbar from '../../components/NavBar/Navbar.jsx';
 import MainBanner from '../../assets/images/main-banner.png';
 
 const programs = [
