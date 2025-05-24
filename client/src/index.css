@@ -9,7 +9,7 @@ body {
     font-family: 'Consolas', sans-serif;
     height: 100vh;
     width: 100%;
-
+    /* overscroll-behavior : none ; */
     color: white;
-    background-color: black;
+    background-color: rgb(5, 5, 50);
 }
