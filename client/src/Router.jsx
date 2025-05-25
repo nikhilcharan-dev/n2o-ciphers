@@ -1,7 +1,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from './pages/Home/HomePage.jsx';
 import Navbar from "./components/NavBar/Navbar.jsx";
-import Login from './pages/login/Login.jsx';
+import Login from './pages/Login/Login.jsx';
+
 const router = createBrowserRouter([
     { path: '/',
         element: <Navbar />,
@@ -11,9 +12,18 @@ const router = createBrowserRouter([
             { path: 'gig-track', element: <div> GIG Track </div> },
             { path: 'test', element: <div> TEST </div> },
             { path: 'about', element: <div> About </div> },
-            { path: 'login', element: <Login/> },
-            
         ]
+    },
+    {
+        path: '/login',
+        element: <Login />,
+    },
+    {
+        path: '*',
+        element:
+            <div style={{ textAlign: 'center', paddingTop: '5%' }}>
+                Under Construction!!!
+            </div>
     }
 ]);
 

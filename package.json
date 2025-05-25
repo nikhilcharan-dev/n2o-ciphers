@@ -1,0 +1,14 @@
+{
+  "name": "n2o-ciphers",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "concurrently \"npm run dev --prefix client\" \"npm run dev --prefix server\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

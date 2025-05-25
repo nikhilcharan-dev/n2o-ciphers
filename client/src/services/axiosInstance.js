@@ -31,7 +31,7 @@ Axios.interceptors.response.use(
         if (err.response.status === 401) {
             alert('Your session has expired. Please log in again.');
             localStorage.removeItem('accessToken');
-            window.location.href = '/login';
+            window.location.href = '/Login';
         } else {
             alert('An error occurred. Please try again later.');
         }
@@ -40,4 +40,4 @@ Axios.interceptors.response.use(
 );
 
 
-export default { Axios };
+export default Axios;

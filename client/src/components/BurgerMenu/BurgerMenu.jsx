@@ -1,11 +1,11 @@
 import {useEffect, useState} from "react";
 import './BurgerMenu.css';
 
-const BurgerMenu = ({ toggleMenu, setToggleMenu}) => {
+const BurgerMenu = ({ setToggleMenu }) => {
     const [toggle, setToggle] = useState(false);
 
     useEffect(() => {
-        // setToggleMenu(!toggleMenu);
+        setToggleMenu((prev) => !prev);
     }, [toggle])
 
     return (

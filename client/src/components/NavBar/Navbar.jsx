@@ -4,11 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import './Navbar.css'
 
 import BurgerMenu from '../BurgerMenu/BurgerMenu'
+import SideBar from "../Sidebar/SideBar.jsx";
 
 export default function Navbar() {
   const [currPage, setCurrPage] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+      localStorage.getItem('loggedIn') === "true"
+  );
   const navigate = useNavigate();
+  const [toggleMenu, setToggleMenu] = useState(false);
 
   const setSectionColor = (changedTo)=>{
       setCurrPage(changedTo);
@@ -17,11 +21,13 @@ export default function Navbar() {
       navigate('/' + changedTo.toLowerCase());
   }
 
+  console.log(isLoggedIn);
+
   return (
       <section>
           <nav className="navbar" >
               <div className="navbar-brand">
-                  <img src="/images/Logo.jpg" className="logo" alt="logo"/>
+                  <img src="/images/Logo.jpg" className="logo" alt="login-logo"/>
                   <div className="title">
                       N2O Ciphers Bounty Nation
                   </div>
@@ -35,13 +41,13 @@ export default function Navbar() {
                   <li id={ `${currPage === "About" ? "active" : ""}`}  className="navSection" onClick={()=>setSectionColor("About")}>About</li>
                   {
                       isLoggedIn ?
-                          <BurgerMenu />
+                          <BurgerMenu setToggleMenu={setToggleMenu} />
                           :
-                          <li className="navSection" onClick={() => navigate('login')} >login</li>
+                          <li className="navSection underline" onClick={() => navigate('login')} >login</li>
                   }
               </ul>
           </nav>
-
+          { toggleMenu && <SideBar /> }
           <Outlet />
       </section>
   )
