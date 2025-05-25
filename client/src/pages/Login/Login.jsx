@@ -53,7 +53,7 @@ export default function Login() {
                 { error && <p className="error">{error}</p> }
                 <form className="login-form" onSubmit={handleSubmit}>
                     <input type="text" placeholder='Email address'/>
-                    <input type='password' placeholder='Password'/ />
+                    <input type='password' placeholder='Password' />
                     <a onClick={() => navigate('/forgot-password')}>forget password?</a>
                     <button type="submit">Login</button>
                     <div className="signUp">
