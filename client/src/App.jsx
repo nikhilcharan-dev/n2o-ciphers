@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import Router from "./Router.jsx";
-
+import Login from './pages/login/Login.jsx';
 const App = () => {
 
     return (

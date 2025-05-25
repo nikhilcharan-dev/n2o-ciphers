@@ -1,0 +1,27 @@
+.Login{
+    height: 647px;
+    width: 100%;
+    display : flex;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    width: 38%;
+}
+.userLoginImage{
+    width: 62%;
+    height: 647px;
+    background-image: url("../../assets/images/userLoginImage.avif");
+    background-size:contain;
+}
+.loginButton{
+    padding : 5px 10px;
+    font-size : 18px;
+    font-weight: 500;
+    border-radius: 10px;
+}
+
+
+
+
+
