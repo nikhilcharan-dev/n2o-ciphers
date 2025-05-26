@@ -32,8 +32,6 @@ Axios.interceptors.response.use(
             alert('Your session has expired. Please log in again.');
             localStorage.removeItem('accessToken');
             window.location.href = '/Login';
-        } else {
-            alert('An error occurred. Please try again later.');
         }
         return Promise.reject(err);
     }
