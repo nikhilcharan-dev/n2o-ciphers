@@ -17,10 +17,10 @@ const router = createBrowserRouter([
         element: <Navbar />,
         children: [
             { path: '', element: <HomePage /> },
-            { path: 'explore', element: <div> Explore </div> },
-            { path: 'gig-track', element: <div> GIG Track </div> },
-            { path: 'test', element: <div> TEST </div> },
-            { path: 'about', element: <div> About </div> },
+            { path: 'explore', element: <Explore /> },
+            { path: 'gig-track', element: <GIGTrack /> },
+            { path: 'test', element: <Test /> },
+            { path: 'about', element: <About /> },
         ]
     },
     {
@@ -38,22 +38,6 @@ const router = createBrowserRouter([
     {
         path: '/learning-path',
         element: <LearningPath />,
-    },
-    {
-        path: '/explore',
-        element: <Explore />,
-    },
-    {
-        path: '/gig-track',
-        element: <GIGTrack />,
-    },
-    {
-        path: '/test',
-        element: <Test />,
-    },
-    {
-        path: '/about',
-        element: <About />,
     },
     {
         path: '*',
