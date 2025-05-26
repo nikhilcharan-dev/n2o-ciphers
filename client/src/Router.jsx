@@ -1,7 +1,16 @@
+import React, { lazy } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import HomePage from './pages/Home/HomePage.jsx';
-import Navbar from "./components/NavBar/Navbar.jsx";
-import Login from './pages/Login/Login.jsx';
+
+const HomePage = lazy(() => import('./pages/Home/HomePage.jsx'));
+const Navbar = lazy(() => import('./components/NavBar/Navbar.jsx'));
+const Login = lazy(() => import('./pages/Login/Login.jsx'));
+const Register = lazy(() => import('./pages/Register/Register.jsx'));
+const ChangePassword = lazy(() => import('./pages/ChangePassword/ChangePassword.jsx'));
+const LearningPath = lazy(() => import('./pages/LearningPath/LearningPath.jsx'));
+const Explore = lazy(() => import('./pages/Explore/Explore.jsx'));
+const GIGTrack = lazy(() => import('./pages/GIGTrack/GIGTrack.jsx'));
+const Test = lazy(() => import('./pages/Test/Test.jsx'));
+const About = lazy(() => import('./pages/About/About.jsx'));
 
 const router = createBrowserRouter([
     { path: '/',
@@ -17,6 +26,34 @@ const router = createBrowserRouter([
     {
         path: '/login',
         element: <Login />,
+    },
+    {
+        path: '/user/register',
+        element: <Register />,
+    },
+    {
+        path: '/user/change-password',
+        element: <ChangePassword />,
+    },
+    {
+        path: '/learning-path',
+        element: <LearningPath />,
+    },
+    {
+        path: '/explore',
+        element: <Explore />,
+    },
+    {
+        path: '/gig-track',
+        element: <GIGTrack />,
+    },
+    {
+        path: '/test',
+        element: <Test />,
+    },
+    {
+        path: '/about',
+        element: <About />,
     },
     {
         path: '*',
