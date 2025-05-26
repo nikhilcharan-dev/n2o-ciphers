@@ -52,7 +52,6 @@ router.post('/register', async (req, res) => {
     const { email, password } = req.body;
     try {
         const user = await User.findOne({ email: email}).lean();
-
         if(user) {
             return res.status(409).json({
                 error: 'User already exists'
@@ -75,10 +74,21 @@ router.post('/register', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
     try {
-        const user = await User.findOne({ user: username});
-        if(!user) return res.status(404).message('User not found');
+        const user = await User.findOne({ email: email}).lean();
+        if(!user) {
+            return res.status(404).json({
+                error: 'User does not exist'
+            });
+        }
+        const isValidPassword = await bcrypt.compare(password, user.password);
+        if(!isValidPassword) {
+            return res.status(404).json({
+                error: 'Passwords do not match'
+            });
+        }
+
         const studentExists = await Student.exists({ _id: user._id });
         const gigWorkerExists = await GIGWorker.exists({ _id: user._id });
 
@@ -93,6 +103,7 @@ router.post('/login', async (req, res) => {
             const student = await Student.findOne({_id: user._id}).lean();
             return res.status(200).json({ type: 'Student', student });
         }
+
         if(gigWorkerExists) {
             const gigWorker = await GIGWorker.findOne({_id: user._id}).lean();
             return res.status(200).json({ type: 'GIGWorker', gigWorker });
@@ -108,7 +119,11 @@ router.put('/change-password', async (req, res) => {
     try {
         const user = await User.findbyId(userId);
         if(!user) return res.status(404).json({ error: 'User not found' });
-
+        if(!bcrypt.compare(password, user.password)) {
+            return res.status(401).json({
+                error: 'Passwords do not match'
+            })
+        }
         user.password = await bcrypt.hash(password, 12);
         await user.save();
 
@@ -116,6 +131,16 @@ router.put('/change-password', async (req, res) => {
     } catch(err) {
         console.log(err);
         return res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+router.get('/get-all-users', async (req, res) => {
+    try {
+        const users = await User.find().lean();
+        res.status(200).json(users);
+    } catch (err) {
+        console.error('Failed to fetch users:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 

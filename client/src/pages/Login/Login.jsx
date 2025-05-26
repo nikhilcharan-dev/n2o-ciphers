@@ -33,8 +33,7 @@ export default function Login() {
             })
             handleLogin(res.data.user, res.data.type)
         } catch(err) {
-            console.log(err);
-            setError(err);
+            setError(err.response.data.error);
         }
     }
 
@@ -50,10 +49,10 @@ export default function Login() {
                     <h1 className="userInvite"> Welcome back! </h1>
                     <h3>Log in with your email</h3>
                 </div>
-                { error && <p className="error">{error}</p> }
+                { error && <div className="error">{error}!</div> }
                 <form className="login-form" onSubmit={handleSubmit}>
-                    <input type="text" placeholder='Email address'/>
-                    <input type='password' placeholder='Password' />
+                    <input type="text" placeholder='Email address' onChange={(e) => setEmail(e.target.value)}/>
+                    <input type='password' placeholder='Password' onChange={(e) => setPassword(e.target.value)} />
                     <a onClick={() => navigate('/forgot-password')}>forget password?</a>
                     <button type="submit">Login</button>
                     <div className="signUp">
