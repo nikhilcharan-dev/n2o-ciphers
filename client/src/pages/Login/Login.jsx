@@ -53,11 +53,11 @@ export default function Login() {
                 <form className="login-form" onSubmit={handleSubmit}>
                     <input type="text" placeholder='Email address' onChange={(e) => setEmail(e.target.value)}/>
                     <input type='password' placeholder='Password' onChange={(e) => setPassword(e.target.value)} />
-                    <a onClick={() => navigate('/forgot-password')}>forget password?</a>
+                    <a onClick={() => navigate('/user/forgot-password')}>forget password?</a>
                     <button type="submit">Login</button>
                     <div className="signUp">
                     <span> Don't have an account?ㅤ
-                        <a onClick={() => navigate('/sign-up')}>Sign Up</a>
+                        <a onClick={() => navigate('/user/sign-up')}>Sign Up</a>
                     </span>
                     </div>
                 </form>
