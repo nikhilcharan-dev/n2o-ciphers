@@ -11,6 +11,7 @@ export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(
       localStorage.getItem('loggedIn') === "true"
   );
+
   const navigate = useNavigate();
   const [toggleMenu, setToggleMenu] = useState(false);
 
