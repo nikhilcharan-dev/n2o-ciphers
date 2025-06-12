@@ -231,7 +231,6 @@ router.get('/verify-reset-password', async (req, res) => {
             });
         }
         const unicode = user.unicode;
-        console.log(unicode, resetCode)
         if(unicode !== resetCode) {
             return res.status(400).json({
                 error: 'Invalid Reset Code'
