@@ -4,8 +4,9 @@ import { config } from 'dotenv';
 
 import connectDB from "./config/DB.js";
 import authRoutes from "./routes/authRoutes/auth.js";
+import transporter from "./services/mailer/mail.js";
 
-// loading env data
+// loading env
 config();
 
 // MiddleWare
@@ -28,3 +29,9 @@ app.listen(PORT, async () => {
     console.log(`Server is running on port ${PORT}`);
     await connectDB();
 });
+
+/*
+    type: tester
+    email: tester@ciphers.com
+    password: admin
+ */

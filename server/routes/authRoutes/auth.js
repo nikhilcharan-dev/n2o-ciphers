@@ -4,6 +4,8 @@ import bcrypt from 'bcrypt';
 
 import { User } from "../../models/User.js";
 import { Student, GIGWorker } from '../../models/Roles.js';
+import sendVerificationMail from "../../services/mailer/verification/service.js";
+import sendForgetPasswordCode from "../../services/mailer/forgot-password/service.js";
 
 
 // helper functions
@@ -46,6 +48,10 @@ const getId = () => {
     return new mongoose.Types.ObjectId();
 }
 
+const getUnicode = () => {
+    return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
 const router = new Router();
 
 router.post('/register', async (req, res) => {
@@ -82,6 +88,7 @@ router.post('/login', async (req, res) => {
                 error: 'User does not exist'
             });
         }
+
         const isValidPassword = await bcrypt.compare(password, user.password);
         if(!isValidPassword) {
             return res.status(404).json({
@@ -114,25 +121,131 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.put('/change-password', async (req, res) => {
-    const { userId, password } = req.body;
+router.post('/send-verification-mail', async (req, res) => {
     try {
-        const user = await User.findbyId(userId);
-        if(!user) return res.status(404).json({ error: 'User not found' });
-        if(!bcrypt.compare(password, user.password)) {
-            return res.status(401).json({
-                error: 'Passwords do not match'
+        const { email } = req.body;
+        const user = await User.findOne({ email: email});
+        if(!user) {
+            return res.status(404).json({
+                error: 'User does not exist'
+            });
+        }
+        if(user.verified === true) {
+            return res.status(400).json({
+                error: 'User already verified'
+            });
+        }
+        const unicodeToken = getUnicode();
+        await sendVerificationMail(email, unicodeToken);
+        user.unicode = unicodeToken;
+        await user.save();
+        return res.status(200).send('Email sent successfully');
+    } catch(err) {
+        console.log(err);
+        return res.status(500).json({
+            error: 'Internal Server Error'
+        });
+    }
+});
+
+// http://localhost:5000/api/oauth/verify-verification-email?userId=12345&verificationCode=12345
+router.get('/verify-verification-email/', async (req, res) => {
+    const { verificationCode, userId } = req.query;
+    try {
+        const user = await User.findById(userId);
+        if(!user) {
+            return res.status(404).json({
+                error: 'User does not exist'
             })
         }
-        user.password = await bcrypt.hash(password, 12);
+        if(user.verified===true) {
+            return res.status(400).json({
+                error: 'User already verified'
+            })
+        }
+        if(verificationCode !== user.unicode) {
+            return res.status(400).json({
+                error: 'Verification Code does not match'
+            })
+        }
+        user.verified = true;
         await user.save();
+        return res.status(200).send('Email verified successfully');
+    } catch(err) {
+        console.log(err);
+        return res.status(500).json({
+            error: 'Internal Server Error'
+        })
+    }
+});
 
+router.post('/change-password', async (req, res) => {
+    const { userId, oldPassword, newPassword } = req.body;
+    try {
+        const user = await User.findbyId(userId);
+        if(!user) return res.status(404).json({ error: 'User does not exist' });
+        if(!bcrypt.compare(oldPassword, user.password)) {
+            return res.status(400).json({
+                error: 'Wrong Password'
+            });
+        }
+        user.password = await bcrypt.hash(newPassword, 12);
+        await user.save();
         return res.status(200).send('Password successfully updated');
     } catch(err) {
         console.log(err);
         return res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+router.post('send-forgot-password-mail', async (req, res) => {
+    const { email } = req.body;
+    console.log(email)
+    try {
+        const user = await User.findOne({ email: email});
+        if(!user) return res.status(404).json({
+            error: 'User does not exist'
+        })
+        console.log(user)
+        const unicodeToken = getUnicode();
+        await sendForgetPasswordCode(email, user.type, unicodeToken);
+        user.unicode = unicodeToken;
+        await user.save();
+        return res.status(200).send('Password reset code sent successfully');
+    } catch(err) {
+        console.log(err);
+        return res.status(500).json({
+            error: 'Internal Server Error'
+        });
+    }
+});
+
+// http://localhost:5000/api/oauth/verify-reset-password?userId=12345&resetCode=12345
+router.get('/verify-reset-password', async (req, res) => {
+    const { userId, resetCode, password } = req.query;
+    try {
+        const user = await User.findById(userId);
+        if(!user) {
+            return res.status(404).json({
+                error: 'User does not exist'
+            });
+        }
+        const unicode = user.unicode;
+        if(unicode !== resetCode) {
+            return res.status(400).json({
+                error: 'Invalid Reset Code'
+            });
+        }
+        user.password = await bcrypt.hash(password, 12);
+        await user.save();
+        return res.status(200).send('Password reset successful');
+    } catch(err) {
+        console.log(err);
+        return res.status(500).json({
+            error: 'Internal Server Error'
+        });
+    }
+})
 
 router.get('/get-all-users', async (req, res) => {
     try {

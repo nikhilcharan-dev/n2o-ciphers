@@ -10,12 +10,18 @@ const UserSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
+    unicode: String,
+    verified: {
+        type: Boolean,
+        default: false,
+    },
     password: String,
     type: {
         type: String,
         enum: ['student', 'gig-worker'],
         default: 'student',
     },
+
 });
 
 export const User = mongoose.model("User", UserSchema);

@@ -16,12 +16,11 @@ export default function Login() {
         localStorage.setItem('userId', user._id);
         localStorage.setItem('userData', JSON.stringify(user));
         console.log(user, type);
-        navigate('/');
-        // if(type === "Not Associated") {
-        //     navigate('/learning-path');
-        // } else {
-        //     navigate('/');
-        // }
+        if(type === "Not Associated") {
+            navigate('/learning-path');
+        } else {
+            navigate('/');
+        }
     }
 
     const handleSubmit = async (e) => {
