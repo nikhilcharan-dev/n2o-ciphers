@@ -56,8 +56,8 @@ export default function Login() {
                     <a onClick={() => navigate('/user/forgot-password')}>forget password?</a>
                     <button type="submit">Login</button>
                     <div className="signUp">
-                    <span> Don't have an account?ㅤ
-                        <a onClick={() => navigate('/user/sign-up')}>Sign Up</a>
+                    <span> Don't have an account? 
+                        <a onClick={() => navigate('/sign-up')}>Sign Up</a>
                     </span>
                     </div>
                 </form>
