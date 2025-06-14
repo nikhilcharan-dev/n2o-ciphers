@@ -1,0 +1,23 @@
+.coursesInfo{
+    display: flex;
+    height: 60px;
+    width: 1200px;
+    justify-content: space-around;
+}
+.displayProgress{
+    width: 1200px;
+    height: 400px;
+    display: flex;
+    justify-content: space-around;
+}
+.courseCompletionProgress{
+    height: 300px;
+    width: 300px;
+}
+.tests{
+    height: 300px;
+    width: 300px;
+}
+.continueButton{
+    text-align: center;
+}
