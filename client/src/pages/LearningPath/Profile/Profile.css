@@ -1,0 +1,18 @@
+.LearnerProfile{
+    height: 100%;
+    width: 100%;
+}
+.LearnerDetails{
+    width: 1200px;
+    height: 500px;
+    display: flex;
+    justify-content: space-around;
+}
+.personalInfoList{
+    height: 300px;
+    width: 300px;
+}
+.pic{
+    height: 300px;
+    width: 300px;
+}
