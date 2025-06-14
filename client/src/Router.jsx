@@ -1,5 +1,6 @@
 import React, { lazy } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Sidebar from './components/Sidebar/SideBar.jsx';
 
 const HomePage = lazy(() => import('./pages/Home/HomePage.jsx'));
 const Navbar = lazy(() => import('./components/NavBar/Navbar.jsx'));
@@ -11,6 +12,13 @@ const Explore = lazy(() => import('./pages/Explore/Explore.jsx'));
 const GIGTrack = lazy(() => import('./pages/GIGTrack/GIGTrack.jsx'));
 const Test = lazy(() => import('./pages/Test/Test.jsx'));
 const About = lazy(() => import('./pages/About/About.jsx'));
+
+const DashBoard = lazy(()=>import('./pages/LearningPath/Dashboard/Dashboard.jsx'));
+const Courses = lazy(()=>import('./pages/LearningPath/Courses/Courses.jsx'));
+const Profile = lazy(()=>import('./pages/LearningPath/Profile/Profile.jsx'));
+
+
+
 
 const router = createBrowserRouter([
     { path: '/',
@@ -35,9 +43,14 @@ const router = createBrowserRouter([
         path: '/user/change-password',
         element: <ChangePassword />,
     },
-    {
-        path: '/learning-path',
-        element: <LearningPath />,
+    { path: 'learning-path',
+        element: <LearningPath/>,
+        children: [
+            { path: '', element: <div>still deciding , what to do</div>},
+            { path: 'dashboard', element: <DashBoard /> },
+            { path: 'courses', element: <Courses /> },
+            { path: 'profile', element: <Profile /> },
+        ]
     },
     {
         path: '*',
@@ -46,6 +59,7 @@ const router = createBrowserRouter([
                 Under Construction!!!
             </div>
     }
+
 ]);
 
 const Router = () => {

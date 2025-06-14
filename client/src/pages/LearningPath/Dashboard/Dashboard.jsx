@@ -4,7 +4,7 @@ import './Dashboard.css';
 const Dashboard = () => {
   return (
     <section>
-      <h1>Dashboard Component</h1>
+        Dashboard will be here
     </section>
   );
 };

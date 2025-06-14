@@ -1,0 +1,15 @@
+.Learner{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+.learningSidebar{
+    display: flex;
+    height: 100%;
+    width: 100px;
+    flex-direction: column;
+}
+ul > li{
+    height: 100px;
+    width: 100px;
+}
