@@ -5,7 +5,7 @@ import './Login.css';
 
 import LoginImage from '../../assets/images/login-image.jpg'
 
-export default function Login() {
+const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -32,6 +32,7 @@ export default function Login() {
             })
             handleLogin(res.data.user, res.data.type)
         } catch(err) {
+            console.log(err);
             setError(err.response.data.error);
         }
     }
@@ -65,3 +66,5 @@ export default function Login() {
         </section>
   )
 }
+
+export default Login;

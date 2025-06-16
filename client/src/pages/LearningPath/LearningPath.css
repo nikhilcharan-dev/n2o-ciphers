@@ -1,15 +1,90 @@
-.Learner{
-    width: 100vw;
-    height: 100vh;
+.section-path {
     display: flex;
-}
-.learningSidebar{
-    display: flex;
-    height: 100%;
-    width: 100px;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    gap: 10px;
+
+    overflow: hidden;
 }
-.sidebarSections > li {
-    height: 100px;
-    width: 100px;
+
+.header {
+    padding-bottom: 70px;
+}
+
+.path {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.learning-path {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5vw;
+    height: 70vh;
+    width: 100vw;
+}
+
+.learning-path article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.learning-path article:hover {
+    transform: scale(1.05);
+}
+
+.learning-path p {
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 1.5;
+    font-size: 1rem;
+}
+
+.learner-article img,
+.worker-article img {
+    height: 40vh;
+    width: auto;
+    border-radius: 10px;
+}
+
+.learning-path img:hover,
+.learning-path button:hover {
+    cursor: pointer;
+}
+
+.learning-path button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    color: #0f0f62;
+}
+
+.slide-animation {
+    border-bottom: 0.2rem solid white;
+    animation: slide 9s ease-in-out infinite;
+}
+
+@keyframes slide {
+    0% {
+        padding-left: 0;
+    }
+    50% {
+        padding-left: 100vw;
+    }
+    100% {
+        padding-left: 0;
+    }
 }

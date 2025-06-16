@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Outlet } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import './Navbar.css'
 
 import BurgerMenu from '../BurgerMenu/BurgerMenu'
